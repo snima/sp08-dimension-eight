@@ -84,7 +84,7 @@ Prior milestones on Conjecture~\ref{conj:fx} include:
     \]
     \item \textbf{Fallat and Xing (2012) \cite{fallat2012spread}:} Proved that among all \emph{rank-two} matrices in $\mathcal{S}_n[a, 1]$, the maximal spread is achieved by the two-block matrix $B_{n, k}(a)$ in \eqref{eq:def-Bnk} with $k^* = \operatorname{round}(n/(3+a))$ (unique up to permutation similarity, except at discrete transition parameters where $n/(3+a)$ is a half-integer and both adjoining choices of $k$ attain the same maximum, and up to signature/negation symmetries at $a=-1$), and conjectured global optimality over all ranks.
     \item \textbf{Biborski (2022) \cite{biborski2022spread}:} Studied real symmetric matrices with entries in a fixed interval and established that maximal spread on $\mathcal{S}_n[a, b]$ is attained at extreme points with entries in $\{a, b\}$.
-    \item \textbf{Breen, Riasanovsky, Tait, and Urschel (2022) \cite{breen2022spread}:} Resolved the related zero-diagonal adjacency graph spread conjecture for all sufficiently large $n$ using graphon analysis, showing that the join of a clique and an independent set with ratio $\approx 2n/3$ maximizes graph spread. Because diagonal entries in $\mathcal{S}_n[a,1]$ vary freely in $[a, 1]$, the graph result does not imply SP-08.
+    \item \textbf{Breen, Riasanovsky, Tait, and Urschel (2022) \cite{breen2022spread}:} Resolved the 20-year-old Gregory--Hershkowitz--Kirkland graph spread conjecture for all sufficiently large $n$ via graph limits. Crucially, their Theorem~1.3 for symmetric graphons establishes the sharp bound $s(W) \le 2/\sqrt{3}$, and Corollary~1.4 proves that for \emph{every} $n \times n$ symmetric nonnegative matrix $A \ge 0$ (with free diagonal entries), $s(A) \le \frac{2n}{\sqrt{3}} \|A\|_{\max}$. This was subsequently generalized to asymmetric nonnegative matrices by Lu and Urschel (2026) \cite{lu2026spread}. While settling the continuous envelope at $a = 0$, their method relies fundamentally on nonnegativity ($A \ge 0$) and does not directly extend to signed intervals $a < 0$.
     \item \textbf{Calkin, Corless, Gonzalez-Vega, Sendra, and Sendra (2025) \cite{corless2025bohemian}:} Proved Conjecture~\ref{conj:fx} for all $a \in (-1, 1)$ when $2 \le n \le 7$, and for $a = 0$ when $2 \le n \le 8$ (where $\max s(A) = \frac{2\sqrt{3}}{3} n$ when $3 \mid n$, as first proved by Zhan \cite{zhan2005extremal}). Consequently, boundary-strip results near $a = -1$ establish new open cases beginning at $n \ge 8$.
     \item \textbf{Holden (2026a, 2026b) \cite{holden2026a, holden2026b}:} In technical reports archived in the \texttt{OpenProblemsInNLA} repository, Holden introduced the finite signed-threshold reduction to $2^{2n-1}$ patterns and certified $(n, a) \in \{(8, 1/2), (10, 0), (11, 0)\}$ in \cite{holden2026a}, and studied endpoint matrices whose centered sign matrix $S = \frac{2}{1-a}(A - \frac{1+a}{2}J_n)$ has $\rank(S) \le 2$, obtaining the initial unrestricted boundary strip $-1 \le a \le -1 + (1+\sqrt{2})/n^2$ in \cite{holden2026b}. While \cite{holden2026b} outlined an argument for centered rank at most two across all $-1 \le a < 1$, that report has undergone informal computational review but not external human peer review. In this paper, we provide self-contained, complete proofs of the signed-threshold reduction (Section~\ref{sec:signed-threshold}) and of the negative-parameter centered-rank-two theorem for $a \le 0$ (Appendix~\ref{app:centered-rank2}), which suffices for all boundary-strip arguments near $a = -1$, while the centered-rank-two problem for general $a > 0$ remains open for independent verification.
 \end{enumerate}
@@ -248,6 +248,18 @@ Let $F(t) = n^2 + 2n(1-a)t - (1-a)(3+a)t^2$ for $t \in \R$ and $-1 \le a < 1$. T
     \item Over integers $k \in \{1, \dots, n-1\}$, the maximum $M_n(a)^2 := \max_{1 \le k < n} F(k)$ is attained at a nearest integer $k^* = \operatorname{round}(n/(3+a))$ (when $n = 2$ and $a = 0$, $t^* = 2/3$ rounds to the unique valid integer $k^* = 1$).
 \end{enumerate}
 \end{theorem}
+
+\begin{corollary}[Universal Dimension-Free Bounded Gap]\label{cor:bounded-gap}
+For every dimension $n \ge 2$ and every parameter $-1 \le a < 1$, the discrete rank-two maximum satisfies
+\begin{equation}\label{eq:bounded-gap}
+0 \le \frac{4n^2}{3+a} - M_n(a)^2 = (1-a)(3+a)\operatorname{dist}\left(\frac{n}{3+a}, \Z\right)^2 \le \frac{(1-a)(3+a)}{4} \le 1.
+\end{equation}
+In particular, the difference between the continuous envelope $4n^2/(3+a)$ and the discrete rank-two spread $M_n(a)^2$ is uniformly bounded by $1$, independent of dimension $n$. Furthermore, identity \eqref{eq:bounded-gap} unifies the classical discrete deficits:
+\begin{enumerate}
+    \item At $a = -1$ for odd $n$: $\operatorname{dist}(n/2, \Z) = 1/2$, yielding deficit $(2)(2)(1/4) = 1$ and $M_n(-1)^2 = 2n^2 - 1$ \cite{zhan2005extremal}.
+    \item At $a = 0$ when $3 \nmid n$: $\operatorname{dist}(n/3, \Z) = 1/3$, yielding deficit $(1)(3)(1/9) = 1/3$ and $M_n(0)^2 = (4n^2 - 1)/3$ \cite{corless2025bohemian}.
+\end{enumerate}
+\end{corollary}
 
 Table~\ref{tab:comparisons} summarizes exact agreement between \eqref{eq:exact-spread} and prior benchmarks.
 
@@ -938,19 +950,19 @@ $-1\le a<1$.
 \end{figure}
 
 \begin{remark}[Distribution and Asymptotic Origin of Certified Margins]\label{rem:margins-asymptotic}
-The strict rational margins $T_i(a) - U$ across the 15 intervals reflect the underlying spectral geometry. On the first five intervals ($a \in [-0.97, 1/5]$), the certified margins are large, ranging from $3.2$ to $12.7$ (with squared margins exceeding $10$). As $a$ approaches the near-one transition point $a_{15} = 499/500$, the margin tightens systematically:
+The strict rational margins $T_i(a) - U$ across the 15 intervals reflect the underlying spectral geometry. On the first five intervals ($a \in [-0.97, 1/5]$), the certified scaled squared gaps $C_i(a)^2 - U^2 B_i$ are large, exceeding $16$, corresponding to spread margins $T_i(a) - U > 0.01$. As $a$ approaches the near-one transition point $a_{15} = 499/500$, the margin tightens systematically:
 \begin{center}
 \small
 \begin{tabular}{ccccc}
 \hline
 Interval $i$ & Range $[a_i, a_{i+1}]$ & Optimal $k$ & Min Squared Gap $C_i(a)^2 - U^2 B_i$ & Min Spread Margin \\
 \hline
-$1$ & $[-0.9700, -0.9155]$ & $4$ & $2.805 \times 10^{1}$ & $> 1.75$ \\
-$5$ & $[-0.2571, 0.2000]$ & $3$ & $1.639 \times 10^{1}$ & $> 1.01$ \\
-$10$ & $[0.9481, 0.9731]$ & $2$ & $1.663 \times 10^{-2}$ & $> 1.03 \times 10^{-3}$ \\
-$13$ & $[0.9918, 0.9949]$ & $2$ & $1.107 \times 10^{-3}$ & $> 6.91 \times 10^{-5}$ \\
-$14$ & $[0.9949, 0.9964]$ & $2$ & $5.914 \times 10^{-4}$ & $> 3.69 \times 10^{-5}$ \\
-$15$ & $[0.9964, 0.9980]$ & $2$ & $2.055 \times 10^{-5}$ & $> 1.20 \times 10^{-7}$ \\
+$1$ & $[-0.9700, -0.9155]$ & $4$ & $2.805 \times 10^{1}$ & $> 1.00 \times 10^{-2}$ \\
+$5$ & $[-0.2571, 0.2000]$ & $3$ & $1.639 \times 10^{1}$ & $> 1.07 \times 10^{-2}$ \\
+$10$ & $[0.9481, 0.9731]$ & $2$ & $1.674 \times 10^{-2}$ & $> 1.61 \times 10^{-5}$ \\
+$13$ & $[0.9918, 0.9949]$ & $2$ & $1.210 \times 10^{-3}$ & $> 1.17 \times 10^{-6}$ \\
+$14$ & $[0.9949, 0.9964]$ & $2$ & $6.940 \times 10^{-4}$ & $> 6.76 \times 10^{-7}$ \\
+$15$ & $[0.9964, 0.9980]$ & $2$ & $1.230 \times 10^{-4}$ & $> 1.20 \times 10^{-7}$ \\
 \hline
 \end{tabular}
 \end{center}
@@ -1191,6 +1203,9 @@ I.~Biborski, \emph{Note on the spread of real symmetric matrices with entries in
 
 \bibitem{breen2022spread}
 J.~Breen, A.~W.~N.~Riasanovsky, M.~Tait, and J.~C.~Urschel, \emph{Maximum spread of graphs and bipartite graphs}, Commun.\ Amer.\ Math.\ Soc.\ \textbf{2} (2022), 417-480; arXiv:2109.03129.
+
+\bibitem{lu2026spread}
+S.~Lu and J.~C.~Urschel, \emph{On the maximum spread of non-negative matrices}, Linear Algebra Appl.\ \textbf{711} (2026), 1-18; arXiv:2502.04368; DOI: 10.1016/j.laa.2025.11.012.
 
 \bibitem{corless2025bohemian}
 N.~J.~Calkin, R.~M.~Corless, L.~Gonzalez-Vega, J.~R.~Sendra, and J.~Sendra, \emph{On the maximal spread of symmetric Bohemian matrices}, IMA J.\ Numer.\ Anal., to appear; arXiv:2510.15919 (2025).

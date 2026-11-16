@@ -26,7 +26,7 @@ Following the solution of cases $n \le 7$ by Calkin, Corless, Gonzalez-Vega, Sen
 
 | File | Role & Description |
 |---|---|
-| [`paper.pdf`](paper.pdf) | Complete 30-page typeset manuscript (compiled cleanly with pdfTeX, 0 errors, 0 warnings, 4 vector figures embedded). |
+| [`paper.pdf`](paper.pdf) | Complete 31-page typeset manuscript (compiled cleanly with pdfTeX, 0 errors, 0 warnings, 4 vector figures embedded). |
 | [`paper.tex`](paper.tex) | Complete LaTeX source code with all theorems, proofs, and references. |
 | [`figures/`](figures/) | Directory containing the 4 publication-quality vector figures (`fig1.pdf` through `fig4.pdf`). |
 | [`check_n8_standalone.py`](check_n8_standalone.py) | **Minimal, Zero-Dependency Verifier (Layer 2).** Pure Python standard library (no NumPy, no SciPy, zero floating point operations). Uses exact rational arithmetic (`fractions.Fraction`) to verify all 30 chord-tangent inequalities in approximately 0.02 seconds. |
@@ -62,9 +62,9 @@ python3 verify_sp08_general_gap.py
 ```
 
 ### Building the Manuscript
-To compile the 30-page article from source:
+To compile the 31-page article from source:
 ```bash
 pdflatex -interaction=nonstopmode paper.tex
 pdflatex -interaction=nonstopmode paper.tex
 ```
-Output: `paper.pdf` (30 pages, 0 errors, 0 warnings).
+Output: `paper.pdf` (31 pages, 0 errors, 0 warnings).
