@@ -51,8 +51,9 @@ python3 -O check_n8_standalone.py
 This runs 100% exact rational arithmetic, checks interval contiguity across $[-0.97, 499/500]$, verifies containment in the boundary strips, and certifies all 30 chord-tangent algebraic inequalities with certified separation $> 10^{-7}$.
 
 ### Complete Verification Suite (All Scripts)
-To run the full suite covering the near-one endpoint, independent Bareiss audit, the master algebraic identities, open intervals, and the general deficit theorem:
+To run the full suite covering foundational pattern certification, the near-one endpoint, independent Bareiss audit, the master algebraic identities, open intervals, and the general deficit theorem:
 ```bash
+python3 verify_sp08_n8_complete.py
 python3 sp08_independent_psd_audit.py all
 python3 sp08_fixed_d_run_reduction_audit.py
 python3 verify_sp08_n8_near_one.py
